@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
+	"os"
 
 	"github.com/go-resty/resty/v2"
 	"github.com/google/uuid"
@@ -16,11 +17,16 @@ func getToken() (string, error) {
 	//Получение токена
 	// Уникальный идентификатор запроса
 	rqUID := uuid.New().String()
+	apiKey := os.Getenv("API_KEY")
+	if apiKey == "" {
+		log.Fatalf("API key not set")
+	}
+
 	response, err := resty.New().R().
 		SetHeader("Content-Type", "application/x-www-form-urlencoded").
 		SetHeader("Accept", "application/json").
 		SetHeader("RqUID", rqUID).
-		SetHeader("Authorization", "Bearer YmViNTRhMTgtZDhhYS00NGUwLTk4MGMtY2YyNDlkNWIyZGM5OjNlNDlmYzM2LTc5NWItNGY4ZC1iZjQwLWYzOTY0NDFkY2E2Yg==").
+		SetHeader("Authorization", "Bearer "+apiKey).
 		SetFormData(map[string]string{
 			"scope": "GIGACHAT_API_PERS",
 		}).

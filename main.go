@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	botToken := os.Getenv("API_KEY")
+	botToken := os.Getenv("TOKEN")
 	if botToken == "" {
 		log.Fatalf("API key not set")
 	}

@@ -17,7 +17,7 @@ func getToken() (string, error) {
 	//Получение токена
 	// Уникальный идентификатор запроса
 	rqUID := uuid.New().String()
-	apiKey := os.Getenv("API_KEY")
+	apiKey := os.Getenv("KEY")
 	if apiKey == "" {
 		log.Fatalf("API key not set")
 	}

@@ -24,7 +24,7 @@ jobs:
       uses: docker/build-push-action@v6
       with:
           push: true
-          tags: dedulyxx/gptbotv1
+          tags: dedulyxx/gptbotv1:latest
           
     - name: executing remote ssh commands using password and run app
       uses: appleboy/ssh-action@v1.2.0
@@ -33,5 +33,8 @@ jobs:
           username: dedulyx
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: cd gptBot/gptBot/ && docker build -t gptbot . && docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
+          script: |
+            cd gptBot/gptBot/
+            docker pull dedulyxx/gptbotv1:latest
+            docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
       

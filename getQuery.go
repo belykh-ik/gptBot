@@ -32,7 +32,7 @@ func getQuery(token string) (string, error) {
 		"messages": []map[string]interface{}{
 			{
 				"role":    "user",
-				"content": "Сколько будет 2+2",
+				"content": "Сколько будет 24234+242424",
 			},
 		},
 		"n":                  1,

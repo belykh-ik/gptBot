@@ -14,9 +14,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: build
-      run: pwd && docker build -t gptbot .
-
-    - name: deploy
-      run: docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
+    - name: executing remote ssh commands using password and run app
+      uses: appleboy/ssh-action@v1.2.0
+      with:
+          host: ${{ secrets.SSH_HOST }}
+          username: dedulyx
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: pwd && docker build -t gptbot . && docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
       

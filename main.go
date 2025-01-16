@@ -46,8 +46,8 @@ func main() {
 					output, err = getToken()
 					if err != nil {
 						fmt.Printf("Ошибка при получении ответа: %v", err)
-						break
 					}
+					continue
 				}
 				msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("Результат команды:\n%s", content))
 				bot.Send(msg)

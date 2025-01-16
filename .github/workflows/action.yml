@@ -21,5 +21,5 @@ jobs:
           username: dedulyx
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
-          script: pwd && docker build -t gptbot . && docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
+          script: cd gptBot/gptBot/ && docker build -t gptbot . && docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
       

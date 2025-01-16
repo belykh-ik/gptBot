@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: build
-      run: docker build -t gptbot .
+      run: pwd && docker build -t gptbot .
 
     - name: deploy
       run: docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1

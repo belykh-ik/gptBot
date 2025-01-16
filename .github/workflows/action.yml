@@ -34,7 +34,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd gptBot/gptBot/
             docker pull dedulyxx/gptbotv1:latest
-            docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d gptbotv1
+            docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d dedulyxx/gptbotv1:latest
       

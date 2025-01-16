@@ -12,9 +12,6 @@ import (
 
 func getToken() (string, error) {
 
-	// Выполнение запроса к GigaChat API
-
-	//Получение токена
 	// Уникальный идентификатор запроса
 	rqUID := uuid.New().String()
 	apiKey := os.Getenv("KEY")

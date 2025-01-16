@@ -23,7 +23,7 @@ type Message struct {
 	Content string `json:"content"`
 }
 
-func getQuery(token string) (string, error) {
+func getQuery(token string, command string) (string, error) {
 
 	// Выполнение запроса к GigaChat API
 
@@ -32,7 +32,7 @@ func getQuery(token string) (string, error) {
 		"messages": []map[string]interface{}{
 			{
 				"role":    "user",
-				"content": "Сколько будет 24234+242424",
+				"content": command,
 			},
 		},
 		"n":                  1,
@@ -54,6 +54,10 @@ func getQuery(token string) (string, error) {
 	}
 
 	// Проверка статуса ответа
+	if response.StatusCode() == 401 {
+		return response.String(), err
+	}
+
 	if response.StatusCode() == 404 {
 		log.Fatalf("Что-то не так")
 	}

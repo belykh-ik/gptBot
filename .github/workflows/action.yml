@@ -34,6 +34,8 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
+            docker rm -f $(docker ps -aq)
+            docker rmi $(docker images -a -q)
             docker pull dedulyxx/gptbotv1:latest
             docker run -e TOKEN=${{secrets.TOKEN}} -e KEY=${{secrets.APIKEY}} -d dedulyxx/gptbotv1:latest
       

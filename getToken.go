@@ -35,10 +35,13 @@ func getToken() (string, error) {
 
 	// Проверка статуса ответа
 	if response.StatusCode() == 404 {
-		log.Fatalf("Что-то не так")
+		err = fmt.Errorf("HTTP request failed with status code: %d", response.StatusCode())
+		return response.String(), err
+
 	}
 	if response.StatusCode() != 200 {
-		log.Fatalf("Error: Received status code %d", response.StatusCode())
+		err = fmt.Errorf("HTTP request failed with status code: %d", response.StatusCode())
+		return response.String(), err
 	}
 
 	// Десериализация ответа в структуру

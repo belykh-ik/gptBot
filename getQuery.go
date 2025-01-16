@@ -54,7 +54,9 @@ func getQuery(token string, command string) (string, error) {
 	}
 
 	// Проверка статуса ответа
+
 	if response.StatusCode() == 401 {
+		err = fmt.Errorf("HTTP request failed with status code: %d", response.StatusCode())
 		return response.String(), err
 	}
 

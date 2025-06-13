@@ -8,22 +8,7 @@ import (
 	"github.com/go-resty/resty/v2"
 )
 
-// Основная структура для обработки ответа
-type Api struct {
-	Choices []Choice `json:"choices"`
-}
-
-// Структура для Choice
-type Choice struct {
-	Message Message `json:"message"`
-}
-
-// Структура для Message
-type Message struct {
-	Content string `json:"content"`
-}
-
-func getQuery(token string, command string) (string, error) {
+func getQueryFromFile(token string, command string) (string, error) {
 
 	// Выполнение запроса к GigaChat API
 
@@ -63,7 +48,6 @@ func getQuery(token string, command string) (string, error) {
 	if response.StatusCode() == 404 {
 		log.Fatalf("Что-то не так")
 	}
-
 	if response.StatusCode() != 200 {
 		log.Fatalf("Error: Received status code %d", response.StatusCode())
 	}

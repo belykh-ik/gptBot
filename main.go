@@ -12,7 +12,7 @@ func main() {
 
 	botToken := os.Getenv("TOKEN")
 	if botToken == "" {
-		log.Fatalf("API key not set")
+		log.Fatalf("BOT TOKEN not set")
 	}
 
 	bot, err := tgbotapi.NewBotAPI(botToken)
@@ -46,7 +46,10 @@ func main() {
 					output, err = getToken()
 					if err != nil {
 						fmt.Printf("Ошибка при получении ответа: %v", err)
+						break
 					}
+					msg := tgbotapi.NewMessage(chatID, "Попробуй задать вопрос еще раз.\n")
+					bot.Send(msg)
 					continue
 				}
 				msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("Результат команды:\n%s", content))
